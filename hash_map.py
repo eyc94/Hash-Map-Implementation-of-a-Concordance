@@ -186,6 +186,7 @@ class HashMap:
 
         the_list = self._buckets[index]
         the_list.remove(key)
+        self.size -= 1
 
         # Find the original key in the linked list. (Iterate through the whole list).
         # If found, remove that original key/value pair.
@@ -199,7 +200,17 @@ class HashMap:
             True if the key is found False otherwise
 
         """
-        # FIXME: Write this function
+
+        hash = self._hash_function(key)  # Calculate the hash key.
+        index = hash % self.capacity  # Calculate the index into the hash table.
+
+        the_list = self._buckets[index]  # Assign a pointer to the list in the specific bucket.
+
+        if the_list.head is None:  # If the linkedlist is empty, return False.
+        	return False
+		
+		# If the linkedlist is not empty, the key exists.
+        return True
 
     def empty_buckets(self):
         """
