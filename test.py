@@ -14,6 +14,7 @@ m.put('key5', 50)
 # m.remove('key2')
 
 print(m)
+print(m.size)
 # print(m.contains_key('key1'))
 # print(m.contains_key('key2'))
 # print(m.contains_key('key3'))
@@ -24,6 +25,7 @@ print(m)
 
 m.resize_table(200)
 print(m)
+print(m.size)
 
 
 # hash = hash_function_1('key1')
@@ -40,3 +42,11 @@ print(m.get('key1'))
 print(m.get('key2'))
 print(m.get('key5'))
 print(m.empty_buckets())
+print(m.table_load())
+print(m.size)
+print(m.capacity)
+load = m.size/m.capacity
+print(load)
+
+
+
