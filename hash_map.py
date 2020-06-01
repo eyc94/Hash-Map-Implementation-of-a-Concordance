@@ -113,8 +113,8 @@ class HashMap:
         Empties out the hash table deleting all links in the hash table.
         """
 
-        for i in range(self.size):
-        	self._buckets[i] = None
+        for i in range(self.capacity):
+        	self._buckets[i].head = None
         self.size = 0
 
     def get(self, key):

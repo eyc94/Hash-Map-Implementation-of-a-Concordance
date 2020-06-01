@@ -32,3 +32,6 @@ print(index)
 
 index = hash % 200
 print(index)
+
+m.clear()
+print(m)
