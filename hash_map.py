@@ -112,7 +112,10 @@ class HashMap:
         """
         Empties out the hash table deleting all links in the hash table.
         """
-        # FIXME: Write this function
+
+        for i in range(self._size):
+        	self._buckets[i] = None
+        self._size = 0
 
     def get(self, key):
         """
