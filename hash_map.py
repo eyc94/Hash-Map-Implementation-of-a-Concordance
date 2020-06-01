@@ -113,9 +113,9 @@ class HashMap:
         Empties out the hash table deleting all links in the hash table.
         """
 
-        for i in range(self._size):
+        for i in range(self.size):
         	self._buckets[i] = None
-        self._size = 0
+        self.size = 0
 
     def get(self, key):
         """
@@ -147,7 +147,28 @@ class HashMap:
             key: they key to use to has the entry
             value: the value associated with the entry
         """
-        # FIXME: Write this function
+        
+        # This is the hashed key. In other words, this is the index for the list.
+        hashed_key = self._hash_function(key)
+        hashed_key %= self.capacity  # This accounts for the case in which the hashed key is larger than the size of the list.
+
+        # Have a pointer point to a linked list at the location in the list.
+        the_list = self._buckets[hashed_key]
+
+        # Check to see if that bucket contains the original key.
+        if the_list.contains(key):  # If the bucket contains the key, update the value of the key to the new value.
+        	# Iterate through the list until the key is found.
+        	current = the_list.head  # Pointer for iteration.
+        	found = False  # Boolean flag.
+        	while current is not None and not found:  # Iterate until it reaches the end or until key found.
+        		if current.key == key:  # If the current pointer's key is found.
+        			found = True
+        			current.value = value  # Update value.
+        		else:  # If the key is not at the current pointer, increment pointer.
+        			current = current.next
+
+        else:  # If the bucket does not contain the key, add the key to the front.
+        	the_list.add_front(key, value)
 
     def remove(self, key):
         """
