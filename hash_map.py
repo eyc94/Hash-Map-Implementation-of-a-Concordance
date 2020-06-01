@@ -149,11 +149,11 @@ class HashMap:
         """
         
         # This is the hashed key. In other words, this is the index for the list.
-        hashed_key = self._hash_function(key)
-        hashed_key %= self.capacity  # This accounts for the case in which the hashed key is larger than the size of the list.
+        hash = self._hash_function(key)
+        index = hash % self.capacity  # This accounts for the case in which the hashed key is larger than the size of the list.
 
         # Have a pointer point to a linked list at the location in the list.
-        the_list = self._buckets[hashed_key]
+        the_list = self._buckets[index]
 
         # Check to see if that bucket contains the original key.
         if the_list.contains(key):  # If the bucket contains the key, update the value of the key to the new value.
@@ -169,6 +169,7 @@ class HashMap:
 
         else:  # If the bucket does not contain the key, add the key to the front.
         	the_list.add_front(key, value)
+        	self.size += 1  # Increment size
 
     def remove(self, key):
         """
@@ -178,7 +179,17 @@ class HashMap:
         Args:
             key: they key to search for and remove along with its value
         """
-        # FIXME: Write this function
+        
+        # Calculate the hashed key.
+        hash = self._hash_function(key)
+        index = hash % self.capacity
+
+        the_list = self._buckets[index]
+        the_list.remove(key)
+
+        # Find the original key in the linked list. (Iterate through the whole list).
+        # If found, remove that original key/value pair.
+        # If not found, do nothing.
 
     def contains_key(self, key):
         """
