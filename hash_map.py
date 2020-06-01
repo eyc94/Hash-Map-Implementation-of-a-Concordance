@@ -134,7 +134,44 @@ class HashMap:
         Args:
             capacity: the new number of buckets.
         """
-        # FIXME: Write this function
+
+        # Create a new hash table that is empty.
+        new_buckets = []
+        for i in range(capacity):  # Fill that hashtable with empty LinkedLists.
+        	new_buckets.append(LinkedList())
+
+        # Reset the size
+        self.size = 0
+
+        # Iterate through the old hash table.
+        for i in range(self.capacity):
+        	if self._buckets[i].head is not None:
+        		current = self._buckets[i].head
+        		while current is not None:
+        			key_to_transfer = current.key  # Grab the key you want to copy over.
+        			value_to_transfer = current.value  # Grab the value you want to copy over.
+        			new_hash = self._hash_function(key_to_transfer)
+        			new_index = new_hash % capacity
+
+        			new_list = new_buckets[new_index]
+
+        			if new_list.contains(key_to_transfer):
+        				list_pointer = new_list.head
+        				found = False
+        				while list_pointer is not None and not found:
+        					if list_pointer.key == key_to_transfer:
+        						found = True
+        						list_pointer.value = value_to_transfer
+        					else:
+        						list_pointer = list_pointer.next
+        			else:
+        				new_list.add_front(key_to_transfer, value_to_transfer)
+        				self.size += 1
+
+        			current = current.next
+
+        self.capacity = capacity
+        self._buckets = new_buckets
 
     def put(self, key, value):
         """
