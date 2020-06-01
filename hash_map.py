@@ -267,7 +267,14 @@ class HashMap:
         Returns:
             The number of empty buckets in the table
         """
-        # FIXME: Write this function
+
+        number_of_empty = 0
+
+        for i in range(self.capacity):
+        	if self._buckets[i].head is None:
+        		number_of_empty += 1
+
+        return number_of_empty
 
     def table_load(self):
         """
