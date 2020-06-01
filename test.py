@@ -26,12 +26,16 @@ m.resize_table(200)
 print(m)
 
 
-hash = hash_function_1('key1')
-index = hash % 100
-print(index)
+# hash = hash_function_1('key1')
+# index = hash % 100
+# print(index)
 
-index = hash % 200
-print(index)
+# index = hash % 200
+# print(index)
 
-m.clear()
-print(m)
+# m.clear()
+# print(m)
+
+print(m.get('key1'))
+print(m.get('key2'))
+print(m.get('key5'))
