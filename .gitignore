@@ -1,3 +1,5 @@
 hash_map_test.py
 test_student_hashmap.py
 *.pyc
+alice.txt
+test_student_wordcount.py
