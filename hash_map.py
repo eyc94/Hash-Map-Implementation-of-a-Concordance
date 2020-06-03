@@ -198,28 +198,29 @@ class HashMap:
             value: the value associated with the entry
         """
         
-        # This is the hashed key. In other words, this is the index for the list.
-        hash = self._hash_function(key)
-        index = hash % self.capacity  # This accounts for the case in which the hashed key is larger than the size of the list.
+        # Handle the case in which the hashmap is completely empty with a capacity of 0.
+        if self.capacity == 0:
+        	return None
+        
+        hash = self._hash_function(key)  # First, place the new key inside a hash function.
+        index = hash % self.capacity  # This is the index into the array of buckets.
 
-        # Have a pointer point to a linked list at the location in the list.
-        the_list = self._buckets[index]
+        current_bucket = self._buckets[index]  # Use the index to grab the LinkedList at that bucket.
 
-        # Check to see if that bucket contains the original key.
-        if the_list.contains(key):  # If the bucket contains the key, update the value of the key to the new value.
-        	# Iterate through the list until the key is found.
-        	current = the_list.head  # Pointer for iteration.
-        	found = False  # Boolean flag.
-        	while current is not None and not found:  # Iterate until it reaches the end or until key found.
-        		if current.key == key:  # If the current pointer's key is found.
-        			found = True
-        			current.value = value  # Update value.
-        		else:  # If the key is not at the current pointer, increment pointer.
-        			current = current.next
-
-        else:  # If the bucket does not contain the key, add the key to the front.
-        	the_list.add_front(key, value)
-        	self.size += 1  # Increment size
+        # Must check to see if the current bucket contains the key we want to add.
+        if current_bucket.contains(key):  # If the current bucket contains the key we want to add, update the existing value.
+        	# First, find the node to update.
+        	current_node = current_bucket.head  # Pointer to iterate through list.
+        	found = False
+        	while current_node is not None and not found:  # Iterate until you hit the end or you find the node.
+        		if current_node.key == key:  # Found the key.
+        			found = True  # Update flag
+        			current_node.value = value  # Update the value at that key.
+        		else:  # If the key is not the right key
+        			current_node = current_node.next  # Move along.
+        else:  # If the current bucket does not contain the key we want to add to front.
+        	current_bucket.add_front(key, value)
+        	self.size = self.size + 1  # Increment size.
 
     def remove(self, key):
         """
