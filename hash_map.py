@@ -298,7 +298,8 @@ class HashMap:
 
         """
 
-        load_factor = self.size / self.capacity
+        # The number of links is the size and the number of buckets is the capacity.
+        load_factor = self.size / self.capacity  # Load factor will be a float.
         return load_factor
 
     def __str__(self):
