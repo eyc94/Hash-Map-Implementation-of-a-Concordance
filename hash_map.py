@@ -52,9 +52,9 @@ class LinkedList:
     def contains(self, key):
         """Searches linked list for a node with a given key
         Args:
-        	key: key of node
+            key: key of node
         Return:
-        	node with matching key, otherwise None"""
+            node with matching key, otherwise None"""
         if self.head is not None:
             cur = self.head
             while cur is not None:
@@ -114,7 +114,7 @@ class HashMap:
         """
 
         for i in range(self.capacity):
-        	self._buckets[i].head = None
+            self._buckets[i].head = None
         self.size = 0
 
     def get(self, key):
@@ -128,7 +128,7 @@ class HashMap:
 
         # Handles the case in which the capacity of the array of buckets is 0.
         if self.capacity == 0:
-        	return None
+            return None
 
         hash = self._hash_function(key)  # Hash the key.
         index = hash % self.capacity  # Find the index from the hash.
@@ -136,14 +136,14 @@ class HashMap:
         current_bucket = self._buckets[index]  # Grab the bucket at that index.
 
         if current_bucket.head is None:  # This accounts for an empty bucket (empty LinkedList).
-        	return None
+            return None
         else:  # If the bucket is not empty, iterate and try to find the key.
-        	current = current_bucket.head  # Set a current pointer to iterate with.
-        	while current is not None:  # Iterate while pointer is not None.
-        		if current.key == key:  # If the pointer's key is what we're looking for.
-        			return current.value  # Return that key's value.
-        		else:  # If the key is not what we're looking for, move pointer.
-        			current = current.next
+            current = current_bucket.head  # Set a current pointer to iterate with.
+            while current is not None:  # Iterate while pointer is not None.
+                if current.key == key:  # If the pointer's key is what we're looking for.
+                    return current.value  # Return that key's value.
+                else:  # If the key is not what we're looking for, move pointer.
+                    current = current.next
         return None  # Return None if we've exhausted our search.
 
     def resize_table(self, capacity):
@@ -157,37 +157,37 @@ class HashMap:
         # Create a new hash table that is empty.
         new_buckets = []
         for i in range(capacity):  # Fill that hashtable with empty LinkedLists.
-        	new_buckets.append(LinkedList())
+            new_buckets.append(LinkedList())
 
         # Reset the size
         self.size = 0
 
         # Iterate through the old hash table.
         for i in range(self.capacity):
-        	if self._buckets[i].head is not None:
-        		current = self._buckets[i].head
-        		while current is not None:
-        			key_to_transfer = current.key  # Grab the key you want to copy over.
-        			value_to_transfer = current.value  # Grab the value you want to copy over.
-        			new_hash = self._hash_function(key_to_transfer)
-        			new_index = new_hash % capacity
+            if self._buckets[i].head is not None:
+                current = self._buckets[i].head
+                while current is not None:
+                    key_to_transfer = current.key  # Grab the key you want to copy over.
+                    value_to_transfer = current.value  # Grab the value you want to copy over.
+                    new_hash = self._hash_function(key_to_transfer)
+                    new_index = new_hash % capacity
 
-        			new_list = new_buckets[new_index]
+                    new_list = new_buckets[new_index]
 
-        			if new_list.contains(key_to_transfer):
-        				list_pointer = new_list.head
-        				found = False
-        				while list_pointer is not None and not found:
-        					if list_pointer.key == key_to_transfer:
-        						found = True
-        						list_pointer.value = value_to_transfer
-        					else:
-        						list_pointer = list_pointer.next
-        			else:
-        				new_list.add_front(key_to_transfer, value_to_transfer)
-        				self.size += 1
+                    if new_list.contains(key_to_transfer):
+                        list_pointer = new_list.head
+                        found = False
+                        while list_pointer is not None and not found:
+                            if list_pointer.key == key_to_transfer:
+                                found = True
+                                list_pointer.value = value_to_transfer
+                            else:
+                                list_pointer = list_pointer.next
+                    else:
+                        new_list.add_front(key_to_transfer, value_to_transfer)
+                        self.size += 1
 
-        			current = current.next
+                    current = current.next
 
         self.capacity = capacity
         self._buckets = new_buckets
@@ -206,7 +206,7 @@ class HashMap:
         
         # Handle the case in which the hashmap is completely empty with a capacity of 0.
         if self.capacity == 0:
-        	return None
+            return None
         
         hash = self._hash_function(key)  # First, place the new key inside a hash function.
         index = hash % self.capacity  # This is the index into the array of buckets.
@@ -215,18 +215,18 @@ class HashMap:
 
         # Must check to see if the current bucket contains the key we want to add.
         if current_bucket.contains(key):  # If the current bucket contains the key we want to add, update the existing value.
-        	# First, find the node to update.
-        	current_node = current_bucket.head  # Pointer to iterate through list.
-        	found = False
-        	while current_node is not None and not found:  # Iterate until you hit the end or you find the node.
-        		if current_node.key == key:  # Found the key.
-        			found = True  # Update flag
-        			current_node.value = value  # Update the value at that key.
-        		else:  # If the key is not the right key
-        			current_node = current_node.next  # Move along.
+            # First, find the node to update.
+            current_node = current_bucket.head  # Pointer to iterate through list.
+            found = False
+            while current_node is not None and not found:  # Iterate until you hit the end or you find the node.
+                if current_node.key == key:  # Found the key.
+                    found = True  # Update flag
+                    current_node.value = value  # Update the value at that key.
+                else:  # If the key is not the right key
+                    current_node = current_node.next  # Move along.
         else:  # If the current bucket does not contain the key we want to add to front.
-        	current_bucket.add_front(key, value)
-        	self.size = self.size + 1  # Increment size.
+            current_bucket.add_front(key, value)
+            self.size = self.size + 1  # Increment size.
 
     def remove(self, key):
         """
@@ -239,7 +239,7 @@ class HashMap:
 
         # Handle the case in which the hashmap is completely empty with a capacity of 0.
         if self.capacity == 0:
-        	return None
+            return None
         
         hash = self._hash_function(key)  # Hash the key.
         index = hash % self.capacity  # Calculate the index into the array of buckets.
@@ -257,16 +257,23 @@ class HashMap:
 
         """
 
-        hash = self._hash_function(key)  # Calculate the hash key.
-        index = hash % self.capacity  # Calculate the index into the hash table.
+        hash = self._hash_function(key)  # Hash the key
+        index = hash % self.capacity  # Calculate the index.
 
-        the_list = self._buckets[index]  # Assign a pointer to the list in the specific bucket.
+        current_bucket = self._buckets[index]  # Grab the bucket at the index.
 
-        if the_list.head is None:  # If the linkedlist is empty, return False.
-        	return False
-		
-		# If the linkedlist is not empty, the key exists.
-        return True
+        if current_bucket.head is None:  # If that bucket is empty, return False.
+            return False
+        else:  # If the bucket is not empty, search for the key.
+            current_pointer = current_bucket.head  # Pointer that iterates.
+            while current_pointer is not None:  # Iterate until the pointer reaches the end.
+                if current_pointer.key == key:  # If the current pointer's key is what we're looking for.
+                    return True  # Return true.
+                else:  # Otherwise, increment the pointer.
+                    current_pointer = current_pointer.next
+
+        # Pointer reached the end and could not find the key we're looking for.
+        return False
 
     def empty_buckets(self):
         """
@@ -277,8 +284,8 @@ class HashMap:
         number_of_empty = 0
 
         for i in range(self.capacity):
-        	if self._buckets[i].head is None:
-        		number_of_empty += 1
+            if self._buckets[i].head is None:
+                number_of_empty += 1
 
         return number_of_empty
 

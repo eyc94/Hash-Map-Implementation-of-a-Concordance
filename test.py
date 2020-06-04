@@ -38,6 +38,11 @@ print(m.get('key401'))  # Gets the value at the middle.
 print(m.get('key104'))  # Gets the value at the end.
 print(m.get('key234'))  # Gets a non-existent key.
 
+print(m.contains_key('key1'))  # Checks first.
+print(m.contains_key('key401'))  # Checks middle.
+print(m.contains_key('key104'))  # Checks the end.
+print(m.contains_key('key2340'))  # Checks non-existent.
+print(m.contains_key('dec'))  # Checks single element.
 
 
 # m.put('key1', 10)
