@@ -113,9 +113,10 @@ class HashMap:
         Empties out the hash table deleting all links in the hash table.
         """
 
+        # Iterate through the array of buckets.
         for i in range(self.capacity):
-            self._buckets[i].head = None
-        self.size = 0
+            self._buckets[i].head = None  # Make the buckets empty.
+        self.size = 0  # Reset the size of the array.
 
     def get(self, key):
         """

@@ -49,6 +49,10 @@ n = HashMap(100, hash_function_1)
 print(n)
 print(n.empty_buckets())
 
+print(m)
+m.clear()
+print(m)
+
 # m.put('key1', 10)
 # m.put('key2', 20)
 # m.put('key1', 40)
