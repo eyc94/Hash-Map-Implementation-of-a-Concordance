@@ -281,13 +281,15 @@ class HashMap:
             The number of empty buckets in the table
         """
 
+        # Initialize variable to count number of empty buckets.
         number_of_empty = 0
 
+        # Iterate through all existing buckets.
         for i in range(self.capacity):
-            if self._buckets[i].head is None:
-                number_of_empty += 1
+            if self._buckets[i].head is None:  # If the bucket is empty.
+                number_of_empty += 1  # Increment count.
 
-        return number_of_empty
+        return number_of_empty  # Return the number of empty buckets.
 
     def table_load(self):
         """

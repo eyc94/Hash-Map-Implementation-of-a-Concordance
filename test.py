@@ -43,7 +43,11 @@ print(m.contains_key('key401'))  # Checks middle.
 print(m.contains_key('key104'))  # Checks the end.
 print(m.contains_key('key2340'))  # Checks non-existent.
 print(m.contains_key('dec'))  # Checks single element.
+print(m.empty_buckets())
 
+n = HashMap(100, hash_function_1)
+print(n)
+print(n.empty_buckets())
 
 # m.put('key1', 10)
 # m.put('key2', 20)
