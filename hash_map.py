@@ -230,18 +230,17 @@ class HashMap:
         Args:
             key: they key to search for and remove along with its value
         """
+
+        # Handle the case in which the hashmap is completely empty with a capacity of 0.
+        if self.capacity == 0:
+        	return None
         
-        # Calculate the hashed key.
-        hash = self._hash_function(key)
-        index = hash % self.capacity
+        hash = self._hash_function(key)  # Hash the key.
+        index = hash % self.capacity  # Calculate the index into the array of buckets.
 
-        the_list = self._buckets[index]
-        the_list.remove(key)
-        self.size -= 1
-
-        # Find the original key in the linked list. (Iterate through the whole list).
-        # If found, remove that original key/value pair.
-        # If not found, do nothing.
+        current_bucket = self._buckets[index]  # Grabs the bucket at the index. 
+        current_bucket.remove(key)  # Uses the LinkedList's remove function to remove the node with the key.
+        self.size -= 1  # Decrement size by 1.
 
     def contains_key(self, key):
         """

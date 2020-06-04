@@ -19,6 +19,15 @@ m.put('key203', 9999)
 m.put('dec', 1010)
 print(m)
 
+m.remove('key401')  # Removes key in the beginning.
+print(m)
+m.remove('key203')  # Removes key in the middle.
+print(m)
+m.remove('key1')  # Removes key in the end.
+print(m)
+m.remove('key1000')  # Attempts to remove non-existent key.
+print(m)
+
 
 
 # m.put('key1', 10)
