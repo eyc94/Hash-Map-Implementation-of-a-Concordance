@@ -126,19 +126,25 @@ class HashMap:
             The value associated to the key. None if the link isn't found.
         """
 
-        hash = self._hash_function(key)
-        index = hash % self.capacity
-
-        if self._buckets[index].head is None:
+        # Handles the case in which the capacity of the array of buckets is 0.
+        if self.capacity == 0:
         	return None
-        else:
-        	current = self._buckets[index].head
-        	while current is not None:
-        		if current.key == key:
-        			return current.value
-        		else:
+
+        hash = self._hash_function(key)  # Hash the key.
+        index = hash % self.capacity  # Find the index from the hash.
+
+        current_bucket = self._buckets[index]  # Grab the bucket at that index.
+
+        if current_bucket.head is None:  # This accounts for an empty bucket (empty LinkedList).
+        	return None
+        else:  # If the bucket is not empty, iterate and try to find the key.
+        	current = current_bucket.head  # Set a current pointer to iterate with.
+        	while current is not None:  # Iterate while pointer is not None.
+        		if current.key == key:  # If the pointer's key is what we're looking for.
+        			return current.value  # Return that key's value.
+        		else:  # If the key is not what we're looking for, move pointer.
         			current = current.next
-        return None
+        return None  # Return None if we've exhausted our search.
 
     def resize_table(self, capacity):
         """

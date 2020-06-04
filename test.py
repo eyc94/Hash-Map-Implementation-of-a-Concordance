@@ -28,6 +28,16 @@ print(m)
 m.remove('key1000')  # Attempts to remove non-existent key.
 print(m)
 
+m.put('key401', 401)
+m.put('key203', 203)
+m.put('key1', 1)
+print(m)
+
+print(m.get('key1'))  # Gets the value at the beginning.
+print(m.get('key401'))  # Gets the value at the middle.
+print(m.get('key104'))  # Gets the value at the end.
+print(m.get('key234'))  # Gets a non-existent key.
+
 
 
 # m.put('key1', 10)
