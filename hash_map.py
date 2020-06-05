@@ -1,7 +1,9 @@
-# hash_map.py
-# ===================================================
-# Implement a hash map with chaining
-# ===================================================
+"""
+Author:         Eric Chin
+File Name:      hash_map.py
+Date:           06/04/2020
+Description:    This is the first part of assignment 5. It is to implement a hashmap with chaining.
+"""
 
 class SLNode:
     def __init__(self, key, value):
