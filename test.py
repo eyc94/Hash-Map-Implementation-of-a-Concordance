@@ -1,4 +1,5 @@
 from hash_map import *
+from word_count import top_words
 
 
 m = HashMap(100, hash_function_1)
