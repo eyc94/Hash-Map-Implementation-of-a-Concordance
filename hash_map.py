@@ -157,41 +157,30 @@ class HashMap:
 
         # Create a new hash table that is empty.
         new_buckets = []
-        for i in range(capacity):  # Fill that hashtable with empty LinkedLists.
+        for i in range(capacity):  # Fill that hashtable with empty LinkedLists (buckets).
             new_buckets.append(LinkedList())
-
-        # Reset the size
-        self.size = 0
 
         # Iterate through the old hash table.
         for i in range(self.capacity):
-            if self._buckets[i].head is not None:
-                current = self._buckets[i].head
-                while current is not None:
-                    key_to_transfer = current.key  # Grab the key you want to copy over.
-                    value_to_transfer = current.value  # Grab the value you want to copy over.
-                    new_hash = self._hash_function(key_to_transfer)
-                    new_index = new_hash % capacity
+            if self._buckets[i].head is not None:  # If the current bucket is not empty (This means there is something to copy over).
+                current = self._buckets[i].head  # Assign a pointer to the head of the LinkedList.
+                while current is not None:  # Iterate until that pointer hits the end of the LinkedList.
+                    key_to_transfer = current.key  # Grab the key to copy over.
+                    value_to_transfer = current.value  # Grab the value to copy over.
+                    new_hash = self._hash_function(key_to_transfer)  # Rehash the key.
+                    new_index = new_hash % capacity  # Find the index of the new location using the new capacity.
+                    print(new_index)
+                    
+                    new_bucket = new_buckets[new_index]  # Grab the new LinkedList (bucket) to copy into from the new array of buckets.
 
-                    new_list = new_buckets[new_index]
+                    # Add the key over to the new list.
+                    new_bucket.add_front(key_to_transfer, value_to_transfer)
 
-                    if new_list.contains(key_to_transfer):
-                        list_pointer = new_list.head
-                        found = False
-                        while list_pointer is not None and not found:
-                            if list_pointer.key == key_to_transfer:
-                                found = True
-                                list_pointer.value = value_to_transfer
-                            else:
-                                list_pointer = list_pointer.next
-                    else:
-                        new_list.add_front(key_to_transfer, value_to_transfer)
-                        self.size += 1
-
+                    # Iterate our current pointer.
                     current = current.next
 
-        self.capacity = capacity
-        self._buckets = new_buckets
+        self.capacity = capacity  # Update to new capacity.
+        self._buckets = new_buckets  # Reassign buckets to the new buckets.
 
     def put(self, key, value):
         """
