@@ -105,6 +105,8 @@ print(x.size, x.capacity)
 x.clear()
 print(x.size, x.capacity)
 
+
+
 # m.put('key1', 10)
 # m.put('key2', 20)
 # m.put('key1', 40)

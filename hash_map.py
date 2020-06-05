@@ -237,8 +237,8 @@ class HashMap:
         index = hash % self.capacity  # Calculate the index into the array of buckets.
 
         current_bucket = self._buckets[index]  # Grabs the bucket at the index. 
-        current_bucket.remove(key)  # Uses the LinkedList's remove function to remove the node with the key.
-        self.size -= 1  # Decrement size by 1.
+        if current_bucket.remove(key):  # Uses the LinkedList's remove function to remove the node with the key.
+            self.size -= 1  # Decrement size by 1.
 
     def contains_key(self, key):
         """
