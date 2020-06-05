@@ -92,6 +92,18 @@ print(hash_function_1('key104') % 300)
 print(hash_function_1('key2') % 300)
 print(hash_function_1('key207') % 300)
 
+m.clear()
+print(m)
+print(m.size, m.capacity)
+
+x = HashMap(100, hash_function_1)
+print(x.size, x.capacity)
+x.put('key1', 10)
+x.put('key2', 20)
+x.put('key3', 30)
+print(x.size, x.capacity)
+x.clear()
+print(x.size, x.capacity)
 
 # m.put('key1', 10)
 # m.put('key2', 20)

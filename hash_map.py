@@ -115,10 +115,10 @@ class HashMap:
         Empties out the hash table deleting all links in the hash table.
         """
 
-        # Iterate through the array of buckets.
-        for i in range(self.capacity):
-            self._buckets[i].head = None  # Make the buckets empty.
-        self.size = 0  # Reset the size of the array.
+        self._buckets = []  # Empty the array of buckets.
+        for i in range(self.capacity):  # Iterate through the current cap.
+            self._buckets.append(LinkedList())  # Append a new LinkedList at each index.
+        self.size = 0  # Reset the size.
 
     def get(self, key):
         """
@@ -218,7 +218,7 @@ class HashMap:
                     current_node = current_node.next  # Move along.
         else:  # If the current bucket does not contain the key we want to add to front.
             current_bucket.add_front(key, value)
-            self.size = self.size + 1  # Increment size.
+            self.size += 1  # Increment size.
 
     def remove(self, key):
         """
